@@ -1,27 +1,35 @@
 pipeline {
-    agent {
-        label 'mac'
+    agent any
+    tools {
+        maven 'Maven'
+        jdk 'Java'
     }
     stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+        stage('Build') {
+            steps {
+                sh 'mvn clean package'
+            }
+        }
         stage('Test') {
             steps {
-                  sh 'mvn clean test'
-  		  echo 'Compile and Unit Test Completed'
+                sh 'mvn test'
             }
- 
-            post {                
-                // If Maven was able to run the tests, even if some of the test
-                // failed, record the test results and archive the jar file.
-                success {
-                   publishHTML([
-                       allowMissing: false, 
-                       alwaysLinkToLastBuild: false, 
-                       keepAll: false, 
-                       reportDir: 'target/surefire-reports/', 
-                       reportFiles: 'emailable-report.html', 
-                       reportName: 'HTML Report', 
-                       reportTitles: '', 
-                       useWrapperFileDirectly: true])
+            post {
+                always {
+                    junit 'target/surefire-reports/*.xml'
+                    publishHTML([
+                        allowMissing: false,
+                        alwaysLinkToLastBuild: false,
+                        reportDir: 'target/surefire-reports/',
+                        reportFiles: 'emailable-report.html',
+                        reportName: 'HTML Report',
+                        reportTitles: 'Test Results'
+                    ])
                 }
             }
         }
