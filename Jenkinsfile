@@ -1,25 +1,15 @@
 pipeline {
-    agent any
-    tools {
-        maven 'Maven'
-        jdk 'Java'
+    agent {
+        label 'mac'
     }
     stages {
-        stage('Checkout') {
-            steps {
-                checkout scm
-            }
-        }
-        stage('Build') {
-            steps {
-                sh 'mvn clean package'
-            }
-        }
         stage('Test') {
             steps {
-                sh 'mvn test'
+                  sh 'mvn clean test'
+  		  echo 'Compile and Unit Test Completed'
             }
-            post {
+ 
+                    post {
                 always {
                     junit 'target/surefire-reports/*.xml'
                     publishHTML([
