@@ -4,7 +4,8 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                bat "mvn clean test"
+                  bat 'mvn clean test'
+  		  echo 'Compile and Unit Test Completed'
             }
  
             post {                
