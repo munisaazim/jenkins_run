@@ -1,11 +1,11 @@
 pipeline {
     agent {
-        label 'windows'
+        label 'mac'
     }
     stages {
         stage('Test') {
             steps {
-                  bat 'mvn clean test'
+                  sh 'mvn clean test'
   		  echo 'Compile and Unit Test Completed'
             }
  
