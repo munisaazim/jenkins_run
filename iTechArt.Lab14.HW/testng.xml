@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="/Users/munisaazimkhodjaeva/IntelliJ IDEA/Java_Programming/iTechArt_AQA/Labs_JavaFiles_Xml/Lecture14/iTechArt.Lab14.HW/src/test/java/Page_Object_Model_And_Project_Factory/TC1.java">
+        <classes>
+            <class name="Page_Object_Model_And_Project_Factory.TC1">
+    <methods>
+        <include name="loginValidation"/>
+    </methods>
+</class>
+</classes>
+</test>
+</suite>
