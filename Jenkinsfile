@@ -1,36 +1,20 @@
 pipeline {
-  agent any
-
-    stage('Build') {
-      steps {
-        sh 'mvn clean install'
-      }
+    agent {
+        label 'mac'
     }
-
-    stage('Test') {
-      steps {
-        sh 'mvn test'
-      }
+    stages {
+        stage('Test') {
+            steps {
+                  sh 'mvn clean test'
+                  echo 'Compile and Unit Test Completed'
+            }
+        }
     }
-
-    stage('Allure Report') {
-      steps {
-        sh 'allure generate allure-results --clean && allure open'
-      }
+    post {
+        always {
+            script {
+                sh 'mvn io.qameta.allure:allure-maven:2.21.0:serve target/allure-results'
+            }
+        }
     }
-  }
-
-  post {
-    always {
-      junit '**/target/surefire-reports/*.xml'
-      archiveArtifacts 'target/*.jar'
-      allure([
-        includeProperties: false,
-        jdk: '',
-        properties: [],
-        reportBuildPolicy: 'ALWAYS',
-        results: [[path: 'allure-results']]
-      ])
-    }
-  }
 }
