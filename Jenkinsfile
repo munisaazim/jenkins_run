@@ -7,24 +7,21 @@ pipeline {
             steps {
                 sh 'mvn clean test'
                 echo 'Compile and Unit Test Completed'
-                sh 'allure generate allure-results'
             }
-        }
-        stage('Generate Allure Report') {
-            steps {
-                script {
-                    allure([
-                        includeProperties: false,
-                        jdk: '',
-                        properties: [],
-                        reportBuildPolicy: 'ALWAYS',
-                        results: [[path: 'target/allure-results']]
-                    ])
-                }
-            }
+
             post {
                 always {
-                     archiveArtifacts artifacts: 'allure-report/**/*', fingerprint: true
+                    script {
+                        allure([
+                            includeProperties: false,
+                            jdk: '',
+                            properties: [],
+                            reportBuildPolicy: 'ALWAYS',
+                            results: [[path: 'target/allure-results']]
+                        ])
+                        sh 'allure generate --clean target/allure-results -o target/allure-report'
+                        archiveArtifacts artifacts: 'target/allure-report'
+                    }
                 }
             }
         }
