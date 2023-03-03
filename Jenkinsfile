@@ -33,8 +33,4 @@ pipeline {
       }
     }
   }
-  tools {
-    // Define Allure Commandline installation
-    install 'allure-commandline'
-  }
 }
