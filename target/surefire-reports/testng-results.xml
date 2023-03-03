@@ -2,20 +2,20 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-03-02T16:32:26 UZT" name="All Test Suite" finished-at="2023-03-02T16:32:42 UZT" duration-ms="15685">
+  <suite started-at="2023-03-03T18:26:13 UZT" name="All Test Suite" finished-at="2023-03-03T18:26:32 UZT" duration-ms="18931">
     <groups>
     </groups>
-    <test started-at="2023-03-02T16:32:26 UZT" name="/Users/munisaazimkhodjaeva/IntelliJ IDEA/Java_Programming/iTechArt_AQA/Labs_JavaFiles_Xml/Lecture14/iTechArt.Lab14.HW/src/test/java/Page_Object_Model_And_Project_Factory/TC1.java" finished-at="2023-03-02T16:32:42 UZT" duration-ms="15685">
+    <test started-at="2023-03-03T18:26:13 UZT" name="/Users/munisaazimkhodjaeva/IntelliJ IDEA/Java_Programming/iTechArt_AQA/Labs_JavaFiles_Xml/Lecture14/iTechArt.Lab14.HW/src/test/java/Page_Object_Model_And_Project_Factory/TC1.java" finished-at="2023-03-03T18:26:32 UZT" duration-ms="18931">
       <class name="Page_Object_Model_And_Project_Factory.TC1">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:Page_Object_Model_And_Project_Factory.TC1@31fa1761]" started-at="2023-03-02T16:32:26 UZT" name="setUp" finished-at="2023-03-02T16:32:34 UZT" duration-ms="7746" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:Page_Object_Model_And_Project_Factory.TC1@17497425]" started-at="2023-03-03T18:26:13 UZT" name="setUp" finished-at="2023-03-03T18:26:21 UZT" duration-ms="8206" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="loginValidation()[pri:0, instance:Page_Object_Model_And_Project_Factory.TC1@31fa1761]" started-at="2023-03-02T16:32:34 UZT" name="loginValidation" finished-at="2023-03-02T16:32:42 UZT" duration-ms="7785" status="PASS">
+        <test-method signature="loginValidation()[pri:0, instance:Page_Object_Model_And_Project_Factory.TC1@17497425]" started-at="2023-03-03T18:26:21 UZT" name="loginValidation" finished-at="2023-03-03T18:26:32 UZT" duration-ms="10562" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- loginValidation -->
-        <test-method is-config="true" signature="quit()[pri:0, instance:Page_Object_Model_And_Project_Factory.TC1@31fa1761]" started-at="2023-03-02T16:32:42 UZT" name="quit" finished-at="2023-03-02T16:32:42 UZT" duration-ms="107" status="PASS">
+        <test-method is-config="true" signature="quit()[pri:0, instance:Page_Object_Model_And_Project_Factory.TC1@17497425]" started-at="2023-03-03T18:26:32 UZT" name="quit" finished-at="2023-03-03T18:26:32 UZT" duration-ms="113" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- quit -->

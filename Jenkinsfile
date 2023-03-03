@@ -5,7 +5,7 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                  sh 'mvn clean test'
+                  sh 'mvn clean install -U'
                   echo 'Compile and Unit Test Completed'
             }
         }
