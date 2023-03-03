@@ -1,36 +1,40 @@
 pipeline {
-  agent {
-    label 'mac'
-  }
-  environment {
-    ALLURE_HOME = tool 'allure-commandline'
-    PATH = "${env.ALLURE_HOME}/bin:${env.PATH}"
-  }
-  stages {
-    stage('Test') {
-      steps {
-        sh 'mvn clean test'
-        echo 'Compile and Unit Test Completed'
-      }
+    agent {
+        label 'mac'
     }
-    stage('Generate Allure Report') {
-      steps {
-        script {
-          allure([
-            includeProperties: false,
-            jdk: '',
-            properties: [],
-            reportBuildPolicy: 'ALWAYS',
-            results: [[path: 'target/allure-results']]
-          ])
+    stages {
+        stage('Test') {
+            steps {
+                sh 'mvn clean test'
+                echo 'Compile and Unit Test Completed'
+            }
         }
-      }
-      post {
-        always {
-          sh 'allure generate allure-results --clean'
-          archiveArtifacts artifacts: 'allure-report/**/*', fingerprint: true
+        stage('Generate Allure Report') {
+            steps {
+                steps {
+                        script {
+                          try {
+                            allure([
+                              includeProperties: false,
+                              jdk: '',
+                              properties: [],
+                              reportBuildPolicy: 'ALWAYS',
+                              results: [[path: 'target/allure-results']]
+                            ])
+                          } catch (NullPointerException e) {
+                            // handle the exception
+                            echo "Caught NullPointerException: ${e}"
+                          }
+                        }
+            }
+            post {
+                always {
+                    sh 'allure generate allure-results --clean'
+                     archiveArtifacts artifacts: 'allure-report/**/*', fingerprint: true
+                }
+
+
+            }
         }
-      }
     }
-  }
 }
