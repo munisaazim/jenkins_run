@@ -9,19 +9,19 @@ pipeline {
   		  echo 'Compile and Unit Test Completed'
             }
  
-                    post {
-                always {
-                    junit 'target/surefire-reports/*.xml'
-                    publishHTML([
-                        allowMissing: false,
-                        alwaysLinkToLastBuild: false,
-                        reportDir: 'target/surefire-reports/',
-                        reportFiles: 'emailable-report.html',
-                        reportName: 'HTML Report',
-                        reportTitles: 'Test Results'
-                    ])
-                }
+        post {
+          always {
+            script {
+              allure([
+                includeProperties: false,
+                jdk: '',
+                properties: [],
+                reportBuildPolicy: 'ALWAYS',
+                results: [[path: 'target/allure-results']]
+              ])
             }
+          }
+        }
         }
     }
 }
