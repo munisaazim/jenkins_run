@@ -1,27 +1,36 @@
 pipeline {
-    agent {
-        label 'mac'
+  agent any
+
+    stage('Build') {
+      steps {
+        sh 'mvn clean install'
+      }
     }
-    stages {
-        stage('Test') {
-            steps {
-                  sh 'mvn clean test'
-  		  echo 'Compile and Unit Test Completed'
-            }
- 
-        post {
-          always {
-            script {
-              allure([
-                includeProperties: false,
-                jdk: '',
-                properties: [],
-                reportBuildPolicy: 'ALWAYS',
-                results: [[path: 'target/allure-results']]
-              ])
-            }
-          }
-        }
-        }
+
+    stage('Test') {
+      steps {
+        sh 'mvn test'
+      }
     }
+
+    stage('Allure Report') {
+      steps {
+        sh 'allure generate allure-results --clean && allure open'
+      }
+    }
+  }
+
+  post {
+    always {
+      junit '**/target/surefire-reports/*.xml'
+      archiveArtifacts 'target/*.jar'
+      allure([
+        includeProperties: false,
+        jdk: '',
+        properties: [],
+        reportBuildPolicy: 'ALWAYS',
+        results: [[path: 'allure-results']]
+      ])
+    }
+  }
 }
