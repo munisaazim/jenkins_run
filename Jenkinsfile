@@ -10,7 +10,6 @@ pipeline {
             }
 
             post {
-                always {
                     script {
                         allure([
                             includeProperties: false,
@@ -22,7 +21,6 @@ pipeline {
                         sh 'allure generate --clean target/allure-results -o target/allure-report'
                         archiveArtifacts artifacts: 'target/allure-report'
                     }
-                }
             }
         }
     }
