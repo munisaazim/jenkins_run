@@ -78,7 +78,7 @@
                 <configuration>
                     <testFailureIgnore>false</testFailureIgnore>
                     <suiteXmlFiles>
-                        <suiteXmlFile>target/testng.xml</suiteXmlFile>
+                        <suiteXmlFile>/target/surefire-reports/testng.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>
