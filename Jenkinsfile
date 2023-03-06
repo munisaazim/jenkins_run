@@ -9,14 +9,18 @@ pipeline {
                 echo 'Compile and Unit Test Completed'
             }
         }
-        stage('Generate Allure Report') {
-            steps {
-                   sh 'allure generate target/allure-results --clean'
-                 }
-            post {
-                always {
-                    sh 'allure serve allure-results'
-                }
+    }
+    post {
+        always {
+            script {
+                allure([
+                    includeProperties: false,
+                    jdk: '',
+                    properties: [],
+                    reportBuildPolicy: 'ALWAYS',
+                    results: [[path: 'allure-results']]
+                ])
+                archiveArtifacts artifacts: 'allure-report/**'
             }
         }
     }
