@@ -11,7 +11,7 @@ pipeline {
         }
         stage('Generate Allure Report') {
             steps {
-                   sh 'allure generate target/allure-results'
+                   sh 'allure generate target/allure-results --clean'
                  }
             post {
                 always {
