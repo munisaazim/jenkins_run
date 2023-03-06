@@ -15,8 +15,7 @@ pipeline {
     }
     post {
         always {
-            node {
-                label 'mac'
+            node('mac') {
                 script {
                     allure([
                         includeProperties: false,
