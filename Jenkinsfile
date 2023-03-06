@@ -13,23 +13,17 @@ pipeline {
             steps {
                 script {
                     try {
-                        allure([
-                            includeProperties: false,
-                            jdk: '',
-                            properties: [],
-                            reportBuildPolicy: 'ALWAYS',
-                            results: [[path: 'target/allure-results']]
-                        ])
+                    allure([
+                        includeProperties: false,
+                        jdk: 'allure-commandline', // use the name of the installation here
+                        properties: [],
+                        reportBuildPolicy: 'ALWAYS',
+                        results: [[path: 'target/allure-results']]
+                    ])
                     } catch (NullPointerException e) {
                         // handle the exception
                         echo "Caught NullPointerException: ${e}"
-                                                allure([
-                                                    includeProperties: false,
-                                                    jdk: '',
-                                                    properties: [],
-                                                    reportBuildPolicy: 'ALWAYS',
-                                                    results: [[path: 'target/allure-results']]
-                                                ])
+
                     }
                 }
             }
