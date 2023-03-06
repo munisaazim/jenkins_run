@@ -23,6 +23,13 @@ pipeline {
                     } catch (NullPointerException e) {
                         // handle the exception
                         echo "Caught NullPointerException: ${e}"
+                                                allure([
+                                                    includeProperties: false,
+                                                    jdk: '',
+                                                    properties: [],
+                                                    reportBuildPolicy: 'ALWAYS',
+                                                    results: [[path: 'target/allure-results']]
+                                                ])
                     }
                 }
             }
