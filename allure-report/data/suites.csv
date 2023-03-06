@@ -1,2 +1,0 @@
-"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"passed","Mon Mar 06 12:34:13 UZT 2023","Mon Mar 06 12:34:22 UZT 2023","9459","All Test Suite","/Users/munisaazimkhodjaeva/IntelliJ IDEA/Java_Programming/iTechArt_AQA/Labs_JavaFiles_Xml/Lecture14/iTechArt.Lab14.HW/src/test/java/Page_Object_Model_And_Project_Factory/TC1.java","Page_Object_Model_And_Project_Factory.TC1","Page_Object_Model_And_Project_Factory.TC1","loginValidation","loginValidation",""
