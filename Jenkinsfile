@@ -15,8 +15,7 @@ pipeline {
                  }
             post {
                 always {
-                    sh 'allure generate allure-results --clean'
-                    archiveArtifacts artifacts: 'allure-report/**/*', fingerprint: true
+                    sh 'allure serve allure-results'
                 }
             }
         }
