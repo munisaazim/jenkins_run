@@ -80,7 +80,7 @@
                 <configuration>
                     <testFailureIgnore>false</testFailureIgnore>
                     <suiteXmlFiles>
-                        <suiteXmlFile>src/testng.xml</suiteXmlFile>
+                        <suiteXmlFile>target/testng.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>
