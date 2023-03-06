@@ -11,29 +11,26 @@ pipeline {
         }
         stage('Generate Allure Report') {
             steps {
-                steps {
-                        script {
-                          try {
-                            allure([
-                              includeProperties: false,
-                              jdk: '',
-                              properties: [],
-                              reportBuildPolicy: 'ALWAYS',
-                              results: [[path: 'target/allure-results']]
-                            ])
-                          } catch (NullPointerException e) {
-                            // handle the exception
-                            echo "Caught NullPointerException: ${e}"
-                          }
-                        }
+                script {
+                    try {
+                        allure([
+                            includeProperties: false,
+                            jdk: '',
+                            properties: [],
+                            reportBuildPolicy: 'ALWAYS',
+                            results: [[path: 'target/allure-results']]
+                        ])
+                    } catch (NullPointerException e) {
+                        // handle the exception
+                        echo "Caught NullPointerException: ${e}"
+                    }
+                }
             }
             post {
                 always {
                     sh 'allure generate allure-results --clean'
-                     archiveArtifacts artifacts: 'allure-report/**/*', fingerprint: true
+                    archiveArtifacts artifacts: 'allure-report/**/*', fingerprint: true
                 }
-
-
             }
         }
     }
