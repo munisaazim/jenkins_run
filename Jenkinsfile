@@ -1,23 +1,24 @@
 pipeline {
-  agent any
-  stages {
-    stage('Build') {
-      steps {
-       sh 'mvn clean test'
-       echo 'Compile and Unit Test Completed'
-      }
+    agent {
+        label 'mac'
     }
-
-    stage('Generate Allure report') {
-      steps {
-        sh 'allure generate target/allure-results'
-      }
+    stages {
+        stage('Test') {
+            steps {
+                sh 'mvn clean test'
+                echo 'Compile and Unit Test Completed'
+            }
+        }
+        stage('Generate Allure Report') {
+            steps {
+                   sh 'allure generate target/allure-results'
+                 }
+            post {
+                always {
+                    sh 'allure generate allure-results --clean'
+                    archiveArtifacts artifacts: 'allure-report/**/*', fingerprint: true
+                }
+            }
+        }
     }
-
-    stage('Serve Allure report') {
-      steps {
-        sh 'allure serve target/allure-results'
-      }
-    }
-  }
 }
