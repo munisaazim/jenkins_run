@@ -20,7 +20,7 @@ pipeline {
                     reportBuildPolicy: 'ALWAYS',
                     results: [[path: 'allure-results']]
                 ])
-                archiveArtifacts artifacts: 'allure-report/**'
+                archiveArtifacts artifacts: 'allure-results/**'
             }
         }
     }
