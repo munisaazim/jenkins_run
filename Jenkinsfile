@@ -2,6 +2,9 @@ pipeline {
     agent {
         label 'mac'
     }
+    environment {
+        ALLURE_HOME = tool name: 'my-allure-commandline', type: 'ru.yandex.qatools.allure.jenkins.tools.AllureCommandlineInstallation'
+    }
     stages {
         stage('Test') {
             steps {
@@ -12,15 +15,18 @@ pipeline {
     }
     post {
         always {
-            script {
-                allure([
-                    includeProperties: false,
-                    jdk: '',
-                    properties: [],
-                    reportBuildPolicy: 'ALWAYS',
-                    results: [[path: 'allure-results']]
-                ])
-                archiveArtifacts artifacts: 'allure-results/**'
+            node {
+                label 'mac'
+                script {
+                    allure([
+                        includeProperties: false,
+                        jdk: 'my-jdk',
+                        properties: [],
+                        reportBuildPolicy: 'ALWAYS',
+                        results: [[path: 'allure-results']]
+                    ])
+                    archiveArtifacts artifacts: 'allure-results/**'
+                }
             }
         }
     }
